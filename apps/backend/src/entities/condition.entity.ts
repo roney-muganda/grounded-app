@@ -11,7 +11,7 @@ export class Condition {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({ nullable: false })
+    @Column({ nullable: false, unique: true })
     name: string;
 
     @CreateDateColumn({ name: 'created_at' })

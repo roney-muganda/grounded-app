@@ -97,7 +97,7 @@ This seeds the following conditions:
 
 ```bash
 # Generate a new migration based on entity changes
-$ npm run migration:generate -- src/migrations/MigrationName
+$ npm run migration:generate -- -n MigrationName
 
 # Run pending migrations
 $ npm run migration:run
