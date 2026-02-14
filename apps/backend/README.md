@@ -31,6 +31,84 @@
 $ npm install
 ```
 
+## Database Setup
+
+### 1. Create PostgreSQL Database
+
+Ensure PostgreSQL is installed and running, then create the database:
+
+```bash
+$ createdb grounded_app
+```
+
+Or using psql:
+
+```sql
+CREATE DATABASE grounded_app;
+```
+
+### 2. Configure Environment Variables
+
+Copy the `.env.example` file to `.env` and update with your database credentials:
+
+```bash
+$ cp .env.example .env
+```
+
+Edit `.env` with your PostgreSQL connection details:
+
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=your_password
+DB_DATABASE=grounded_app
+DB_SYNCHRONIZE=false
+```
+
+### 3. Run Database Migrations
+
+Execute the migrations to create the database schema:
+
+```bash
+$ npm run migration:run
+```
+
+This will create three tables:
+- **users**: Stores login credentials (id, email, password_hash)
+- **profiles**: Stores public profile data (id, user_id, alias, onboarding_completed, selected_conditions)
+- **conditions**: Stores available health conditions
+
+### 4. Seed Initial Data
+
+Populate the conditions table with initial data:
+
+```bash
+$ npm run seed:run
+```
+
+This seeds the following conditions:
+- Bipolar
+- Endo/PCOS
+- Chronic Pain
+- Caregivers
+
+### Database Management Commands
+
+```bash
+# Generate a new migration based on entity changes
+$ npm run migration:generate -- -n MigrationName
+
+# Run pending migrations
+$ npm run migration:run
+
+# Revert the last migration
+$ npm run migration:revert
+
+# Run seed scripts
+$ npm run seed:run
+```
+
 ## Compile and run the project
 
 ```bash
